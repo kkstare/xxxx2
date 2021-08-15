@@ -1,0 +1,2 @@
+https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
+密码验证于2021年8月13日不再支持，也就是不能再用密码方式去提交代码。请用使用 personal access token 替代。
