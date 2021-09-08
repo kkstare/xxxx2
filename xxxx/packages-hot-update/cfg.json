@@ -1,0 +1,13 @@
+{
+    "version": "1.0.0",
+    "serverRootDir": "http://192.168.10.104",
+    "resourceRootDir": "D:\\code\\xxxx_v2\\client\\xxxx\\build\\jsb-link",
+    "genManifestDir": "",
+    "hotAddressArray": [
+        "http://",
+        "http://192.168.10.104"
+    ],
+    "buildTime": 1631033688013,
+    "genTime": 1631033688013,
+    "genVersion": null
+}

@@ -4,9 +4,9 @@
   "startScene": "be450e24-1503-402a-9f64-2ed4636267b9",
   "excludeScenes": [],
   "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
+    "landscapeLeft": false,
+    "landscapeRight": false,
+    "portrait": true,
     "upsideDown": false
   },
   "webOrientation": "auto",
@@ -16,14 +16,14 @@
   "mainIsRemote": false,
   "optimizeHotUpdate": false,
   "md5Cache": false,
-  "nativeMd5Cache": true,
-  "encryptJs": true,
+  "nativeMd5Cache": false,
+  "encryptJs": false,
   "xxteaKey": "f480c212-7827-4d",
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
-    "REMOTE_SERVER_ROOT": "",
-    "packageName": "org.cocos2d.demo"
+    "REMOTE_SERVER_ROOT": "http://106.53.94.70/asset",
+    "packageName": "org.cocos2d.xxxx"
   },
   "ios": {
     "REMOTE_SERVER_ROOT": "",

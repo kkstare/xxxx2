@@ -19,7 +19,46 @@ export default class AssetUtil extends cc.Component {
                     console.log(name+"加载bundle成功")
                     resolve(res)
                 })
-            })
+           }
+       )
     }
+
+
+    //在loadbundle时有读缓存 不用考虑重复加载的问题
+    static loadWindow(bundleName, windowName) {
+        return new Promise<any>(
+            (resolve, reject) => {
+                AssetUtil.loadBundle(bundleName).then(() => {
+                    cc.assetManager.getBundle(bundleName).load(windowName, (err, asset) => {
+                        if (err) {
+                            reject(err)
+                        } else {
+                            resolve(asset)
+                        }
+                    })  
+                }) 
+           }
+
+       )
+    }
+
+    //在loadbundle时有读缓存 不用考虑重复加载的问题
+    static loadRes(bundleName,windowName) {
+        return new Promise<any>(
+            (resolve, reject) => {
+                AssetUtil.loadBundle(bundleName).then(() => {
+                    cc.assetManager.getBundle(bundleName).load<cc.SpriteFrame>(windowName,cc.SpriteFrame,(err, asset:cc.SpriteFrame) => {
+                        if (err) {
+                            reject(err)
+                        } else {
+                            resolve(asset)
+                        }
+                    })  
+                }) 
+           }
+
+       )
+    }
+
 
 }

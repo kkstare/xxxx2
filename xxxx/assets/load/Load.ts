@@ -12,6 +12,9 @@ import AssetUtil from "../commonScript/AssetUtil";
 export default class NewClass extends cc.Component {
 
 
+    @property(cc.Label)
+    proText:cc.Label = null
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
@@ -50,14 +53,37 @@ export default class NewClass extends cc.Component {
         //         })   
         //     })
         // )
-        list.push(AssetUtil.loadBundle("configs"))    
-        list.push(AssetUtil.loadBundle("commonRes"))    
-        list.push(AssetUtil.loadBundle("lobby"))    
+
+        list.push(AssetUtil.loadBundle("configs"))
+        list.push(AssetUtil.loadBundle("commonRes"))
+        list.push(AssetUtil.loadBundle("lobby"))
+        
+        // list.push(
+        //     new Promise<any>(
+        //         (resolve, reject) => {
+        //             cc.assetManager.loadBundle('http://106.53.94.70/assets/act001/', (err, bundle) => {
+        //                 console.log(bundle)
+        //                 console.log("下载config成功")
+        //                 bundle.preloadDir("./", (finish, total, item) => {
+        //                     console.log(finish, total)
+        //                     this.proText.string = finish+"/"+total
+        //                 }, (err, asset) => {
+        //                     if (err) {
+        //                         console.log(err)
+        //                     }
+        //                     console.log("加载所有资源完成")
+        //                     resolve(asset)
+        //                 })
+        
+        //             });
+        //         }
+        //     )
+        // )
+        
 
         Promise.all(list).then(() => {
-            cc.director.loadScene("Lobby")
+            // cc.director.loadScene("Lobby")
         })
-
     }
 
     start () {
