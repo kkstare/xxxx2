@@ -35,7 +35,9 @@ export default class SKPacket{
     }
 
     encode(properties:any):any{
-        let msg=SKSocket.pbroot.lookupType(`${SKSocket.pbname}.${this.prefix}`);
+        // let msg = SKSocket.pbroot.lookupType(`${SKSocket.pbname}.${this.prefix}`);
+        let msg=SKSocket.pbroot.lookupType(`${this.prefix}`);
+
         if(!msg){
             return;
         }

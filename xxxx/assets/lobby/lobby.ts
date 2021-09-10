@@ -11,7 +11,7 @@ import BaseApp from "../frame/BaseApp";
 import NetManager from "../frame/net/NetManager";
 import SKSocket from "../frame/net/SKSocket";
 import UpdateAble from "../frame/update/UpdateAble";
-import { xxxx } from "../proto/proto";
+// import { xxxx } from "../proto/proto";
 
 const {ccclass, property} = cc._decorator;
 
@@ -52,11 +52,11 @@ export default class Lobby extends cc.Component implements UpdateAble {
         console.log(a)
         console.log(arr)
 
-        NetManager.instance.connect({
-            ip: "127.0.0.1",
-            port: 3000,
-            protocol: "ws"
-        }, 1000)
+        // NetManager.instance.connect({
+        //     ip: "127.0.0.1",
+        //     port: 3000,
+        //     protocol: "ws"
+        // }, 1000)
     }
     sendClick() {
         // let msg = xxxx.Login.create({

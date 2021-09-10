@@ -222,6 +222,7 @@ export default class SKSocket {
     }
 
     private send(prefix: string, properties: any) {
+        console.log(prefix, properties)
         if (!this.socket || this.socket.readyState != 1) {
             if (SKSocket.disconnectBlock) {
                 SKSocket.disconnectBlock();
