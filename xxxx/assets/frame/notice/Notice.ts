@@ -18,7 +18,7 @@ export default class Notice extends cc.Component {
 
 
     init(notice: NoticeData) {
-        console.log(notice)
+        // console.log(notice)
         switch (notice.type) {
             case 1:
                 this.initText(notice)

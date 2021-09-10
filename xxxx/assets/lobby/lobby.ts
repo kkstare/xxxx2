@@ -67,10 +67,12 @@ export default class Lobby extends cc.Component implements UpdateAble {
         // console.log("编码",JSON.stringify(encode))
 
         // NetManager.instance.send(encode)
-        SKSocket.send("c2s_login", {
-            userId: 1,
-            password:2
+
+        AssetUtil.loadWindow("fight", "prefab/fightView").then((res) => {
+            let node = cc.instantiate(res)
+            BaseApp.instance.layerMgr.addToBaseLayer(node)
         })
+
     }
     btn1Click() {
         console.log("btn1 click")

@@ -62,9 +62,10 @@ export default class BaseApp extends cc.Component {
         console.log("[ App Loaded ! ]");
         this._root = this.node;
         cc.game.addPersistRootNode(this._root);
+        this.initMgr();
+
     }
     start() {
-        this.initMgr();
     }
     initMgr() {
         this._layerMgr = new LayerMgr(this.layer)

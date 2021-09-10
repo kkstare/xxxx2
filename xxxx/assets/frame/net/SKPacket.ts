@@ -67,7 +67,9 @@ export default class SKPacket{
     }
 
     decode(buffer:Uint8Array):any{
-        let msg=SKSocket.pbroot.lookupType(`${SKSocket.pbname}.${this.prefix}`);
+        // let msg = SKSocket.pbroot.lookupType(`${SKSocket.pbname}.${this.prefix}`);
+        let msg=SKSocket.pbroot.lookupType(`${this.prefix}`);
+
         let result=msg.decode(buffer);
         return result;
     }

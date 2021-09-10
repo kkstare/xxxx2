@@ -7,6 +7,8 @@
 
 const {ccclass, property} = cc._decorator;
 import AssetUtil from "../commonScript/AssetUtil";
+import NetAgent from "../frame/net/NetAgent";
+
 import SKSocket from "../frame/net/SKSocket";
 
 @ccclass
@@ -21,70 +23,46 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        let list: Promise<any>[] = []
-        // list.push(new Promise<any>(
-        //     (resolve, reject) => {
-        //         cc.assetManager.loadBundle("configs", null, (err, res) => {
-        //             if (err) {
-        //                 reject(err)
-        //             }
-        //             console.log("加载configbundle成功")
-        //             resolve(res)
-        //         })
-              
-        //     })
-        // )
-        // list.push(new Promise<any>(
-        //     (resolve, reject) => {
-        //         cc.assetManager.loadBundle("commonRes", null, (err, res) => {
-        //             if (err) {
-        //                 reject(err)
-        //             }
-        //             console.log("加载commonResbundle成功")
-        //             resolve(res)
-        //         })      
-        //     })
-        // )
-        // list.push(new Promise<any>(
-        //     (resolve, reject) => {
-        //         cc.assetManager.loadBundle("lobby", null, (err,res) => {
-        //             if (err) {
-        //                 reject(err)
-        //             }
-        //             console.log("加载lobbybundle成功")
-        //             resolve(res)
-        //         })   
-        //     })
-        // )
-        
-        list.push(AssetUtil.loadBundle("configs"))
-        list.push(AssetUtil.loadBundle("commonRes"))
-        list.push(AssetUtil.loadBundle("lobby"))
-        SKSocket.loadProto("./c2s", () => {
-            console.log("加载协议成功")
-        })
-
-        SKSocket.connect("127.0.0.1", 3000, (code) => {
-            console.log("连接成功")
-        }, () => {
-            console.log("连接成功2")
-
-        });
-
-
-        Promise.all(list).then(() => {
-            this.beginBtn.on(cc.Node.EventType.TOUCH_END, () => {
-                this.beginGame()
-            })
-        })
+      
     }
 
     beginGame() {
         cc.director.loadScene("Lobby")
-
     }
 
-    start () {
+    start() {
+        let list: Promise<any>[] = []
+        
+        NetAgent.instance.registerProto()
+
+        list.push(AssetUtil.loadBundle("configs"))
+        list.push(AssetUtil.loadBundle("commonRes"))
+        list.push(AssetUtil.loadBundle("lobby"))
+        list.push(new Promise<any>(
+            (resolve, reject) => {
+                SKSocket.loadProto("./c2s", () => {
+                    console.log("加载协议成功")
+                    resolve(true)
+                })
+            }
+        ) )  
+
+        Promise.all(list).then(() => {
+
+            SKSocket.connect("127.0.0.1", 3000, (code) => {
+                console.log("连接失败",code)
+            }, () => {
+                console.log("连接成功2")
+                SKSocket.send("c2s_login", {
+                    userId: 1,
+                    password:2
+                })
+            });
+
+            this.beginBtn.on(cc.Node.EventType.TOUCH_END, () => {
+                this.beginGame()
+            })
+        })
     }
 
     // update (dt) {}
