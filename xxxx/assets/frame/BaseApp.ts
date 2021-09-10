@@ -50,8 +50,6 @@ export default class BaseApp extends cc.Component {
         return this._noticeMgr;
     }
 
-
-
     private _updateMgr: UpdateMgr;
     public get updateMgr(): UpdateMgr {
         return this._updateMgr;

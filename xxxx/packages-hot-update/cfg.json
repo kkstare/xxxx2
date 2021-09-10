@@ -1,13 +1,16 @@
 {
-    "version": "1.0.0",
-    "serverRootDir": "http://192.168.10.104",
+    "version": "1.0.2",
+    "serverRootDir": "http://106.53.94.70/assets/main/",
     "resourceRootDir": "D:\\code\\xxxx_v2\\client\\xxxx\\build\\jsb-link",
     "genManifestDir": "",
     "hotAddressArray": [
         "http://",
-        "http://192.168.10.104"
+        "http://192.168.10.104",
+        "http://106.53.94.70/asset/main",
+        "http://106.53.94.70/assets/main",
+        "http://106.53.94.70/assets/main/"
     ],
-    "buildTime": 1631033688013,
-    "genTime": 1631033688013,
+    "buildTime": 1631081692146,
+    "genTime": 1631081692146,
     "genVersion": null
 }

@@ -22,7 +22,7 @@
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
-    "REMOTE_SERVER_ROOT": "http://106.53.94.70/asset",
+    "REMOTE_SERVER_ROOT": "",
     "packageName": "org.cocos2d.xxxx"
   },
   "ios": {

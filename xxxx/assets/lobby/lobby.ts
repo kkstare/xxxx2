@@ -8,7 +8,10 @@
 import ActivityDownloadUtil from "../commonScript/ActivityDownloadUtil";
 import AssetUtil from "../commonScript/AssetUtil";
 import BaseApp from "../frame/BaseApp";
+import NetManager from "../frame/net/NetManager";
+import SKSocket from "../frame/net/SKSocket";
 import UpdateAble from "../frame/update/UpdateAble";
+import { xxxx } from "../proto/proto";
 
 const {ccclass, property} = cc._decorator;
 
@@ -28,14 +31,16 @@ export default class Lobby extends cc.Component implements UpdateAble {
     btn2: cc.Node = null
     @property(cc.Node)
     btn3:cc.Node = null
-    // LIFE-CYCLE CALLBACKS:
-
+    @property(cc.Node)
+    btnSend:cc.Node = null
+    
     private _text = "hello kkFrame"
 
     onLoad() {
         this.btn1.on(cc.Node.EventType.TOUCH_END,this.act1Click,this)
         this.btn2.on(cc.Node.EventType.TOUCH_END,this.act2Click,this)
         this.btn3.on(cc.Node.EventType.TOUCH_END,this.act3Click,this)
+        this.btnSend.on(cc.Node.EventType.TOUCH_END,this.sendClick,this)
 
         // BaseApp.instance.updateMgr.regist(this)
 
@@ -47,8 +52,26 @@ export default class Lobby extends cc.Component implements UpdateAble {
         console.log(a)
         console.log(arr)
 
+        NetManager.instance.connect({
+            ip: "127.0.0.1",
+            port: 3000,
+            protocol: "ws"
+        }, 1000)
     }
+    sendClick() {
+        // let msg = xxxx.Login.create({
+        //     userId: "1",
+        //     password:"2"
+        // })
+        // let encode = xxxx.Login.encode(msg).finish();
+        // console.log("编码",JSON.stringify(encode))
 
+        // NetManager.instance.send(encode)
+        SKSocket.send("c2s_login", {
+            userId: 1,
+            password:2
+        })
+    }
     btn1Click() {
         console.log("btn1 click")
 

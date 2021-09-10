@@ -7,6 +7,7 @@
 
 const {ccclass, property} = cc._decorator;
 import AssetUtil from "../commonScript/AssetUtil";
+import SKSocket from "../frame/net/SKSocket";
 
 @ccclass
 export default class NewClass extends cc.Component {
@@ -15,6 +16,8 @@ export default class NewClass extends cc.Component {
     @property(cc.Label)
     proText:cc.Label = null
 
+    @property(cc.Node)
+    beginBtn:cc.Node = null
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
@@ -53,37 +56,32 @@ export default class NewClass extends cc.Component {
         //         })   
         //     })
         // )
-
+        
         list.push(AssetUtil.loadBundle("configs"))
         list.push(AssetUtil.loadBundle("commonRes"))
         list.push(AssetUtil.loadBundle("lobby"))
-        
-        // list.push(
-        //     new Promise<any>(
-        //         (resolve, reject) => {
-        //             cc.assetManager.loadBundle('http://106.53.94.70/assets/act001/', (err, bundle) => {
-        //                 console.log(bundle)
-        //                 console.log("下载config成功")
-        //                 bundle.preloadDir("./", (finish, total, item) => {
-        //                     console.log(finish, total)
-        //                     this.proText.string = finish+"/"+total
-        //                 }, (err, asset) => {
-        //                     if (err) {
-        //                         console.log(err)
-        //                     }
-        //                     console.log("加载所有资源完成")
-        //                     resolve(asset)
-        //                 })
-        
-        //             });
-        //         }
-        //     )
-        // )
-        
+        SKSocket.loadProto("./c2s", () => {
+            console.log("加载协议成功")
+        })
+
+        SKSocket.connect("127.0.0.1", 3000, (code) => {
+            console.log("连接成功")
+        }, () => {
+            console.log("连接成功2")
+
+        });
+
 
         Promise.all(list).then(() => {
-            // cc.director.loadScene("Lobby")
+            this.beginBtn.on(cc.Node.EventType.TOUCH_END, () => {
+                this.beginGame()
+            })
         })
+    }
+
+    beginGame() {
+        cc.director.loadScene("Lobby")
+
     }
 
     start () {
