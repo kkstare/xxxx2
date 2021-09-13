@@ -6,6 +6,7 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import AssetUtil from "../commonScript/AssetUtil";
+import AppData from "./AppData";
 import LayerMgr from "./layer/layerMgr";
 import NoticeMgr from "./notice/NoticeMgr";
 
@@ -27,12 +28,20 @@ export default class BaseApp extends cc.Component {
     public static get instance():BaseApp {
         return BaseApp._instance;
     }
- 
+    
+    private static _appData: AppData = null;
+    public static get appData(): AppData {
+        return BaseApp._appData;
+    }
+    public static set appData(value: AppData) {
+        BaseApp._appData = value;
+    }
+    
+
     private _root: cc.Node = null;
     public get root(): cc.Node {
         return this._root;
     }
-
 
 
     private _layerMgr: LayerMgr;
@@ -55,10 +64,10 @@ export default class BaseApp extends cc.Component {
         return this._updateMgr;
     }
 
-
  
     onLoad(): void {
         BaseApp._instance = this
+        BaseApp._appData = new AppData()
         console.log("[ App Loaded ! ]");
         this._root = this.node;
         cc.game.addPersistRootNode(this._root);

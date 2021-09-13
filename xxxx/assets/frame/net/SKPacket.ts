@@ -46,6 +46,7 @@ export default class SKPacket{
         if(!body){
             return;
         }
+        console.log(ByteBuffer)
         let buffer=new ByteBuffer();
         buffer.writeShort(this.prefix.length);
         buffer.writeString(this.prefix);

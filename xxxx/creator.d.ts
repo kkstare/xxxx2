@@ -9903,7 +9903,14 @@ declare namespace cc {
 		@param event event 
 		*/
 		dispatchEvent(event: Event): void;	
-	}	
+	}
+	export class Assembler {
+		public init(comp: cc.RenderComponent);
+	}
+	// export class gfx{
+  //     static RB_FMT_S8: number;
+
+	// }
 	/** !#en
 	Mesh Renderer Component
 	!#zh

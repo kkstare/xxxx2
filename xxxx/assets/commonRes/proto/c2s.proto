@@ -4,12 +4,40 @@ message c2s_login{
     required int32 userId = 1;
     required int32 password = 2;
 }
-
 message s2c_login {
     required int32 agentId = 1;
 }
 
 message s2c_notice {
-    required int32 userId = 1;
+    required int32 agentId = 1;
     required string notice = 2;
 }
+
+message c2s_match {
+    required int32 agentId = 1;
+    required string heroName = 2;
+} 
+
+message matchData {
+    required int32 agentId =1;
+    required string heroName = 2;
+    required int32 matchId =3;
+}
+message s2c_match {
+   repeated matchData data = 1;
+} 
+
+message c2s_move {
+    required int32 agentId = 1;
+    required int32 touchX = 2;
+    required int32 touchy = 3;
+    required int32 frame = 4;
+} 
+
+message s2c_frameData {
+    required int32 agentId = 1;
+    required int32 touchX = 2;
+    required int32 touchy = 3;
+    required int32 frame = 4;
+} 
+

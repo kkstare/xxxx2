@@ -20,20 +20,36 @@ export default class Player extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
 
-    public _playerData:PlayerData
-
-    onLoad() {
-        this._playerData = new PlayerData()
-        this._playerData.on(PlayerData.PLAYER_COLOR_CHANGE,this.colorChange.bind(this) )
+    private _playerData: PlayerData;
+    public get playerData(): PlayerData {
+        return this._playerData;
+    }
+    public set playerData(value: PlayerData) {
+        this._playerData = value;
+  
     }
 
+
+    onLoad() {
+        // this._playerData = new PlayerData()
+        this._playerData.on(PlayerData.PLAYER_COLOR_CHANGE,this.colorChange,this)
+        this._playerData.on(PlayerData.PLAYER_POS_CHANGE,this.posChange,this)
+    }
+ 
     start () {
         // this._playerData.color = cc.color(2,2,2,2)
     }
+    posChange() {
+        // console.log(arguments)
 
+        // console.log(arguments[0])
+        this.node.position = arguments[0]
+        // console.log(this.node.position.x,this.node.position.y)
+
+    }
     colorChange() {
-        console.log(arguments)
-        this.img.color = arguments[0]
+        // console.log(arguments)
+        // this.img.color = arguments[0]
     }
     // update (dt) {}
 }

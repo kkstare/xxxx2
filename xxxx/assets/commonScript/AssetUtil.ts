@@ -25,11 +25,11 @@ export default class AssetUtil extends cc.Component {
 
 
     //在loadbundle时有读缓存 不用考虑重复加载的问题
-    static loadWindow(bundleName, windowName) {
+    static loadWindow(bundleName, resUrl) {
         return new Promise<any>(
             (resolve, reject) => {
                 AssetUtil.loadBundle(bundleName).then(() => {
-                    cc.assetManager.getBundle(bundleName).load(windowName, (err, asset) => {
+                    cc.assetManager.getBundle(bundleName).load(resUrl, (err, asset) => {
                         if (err) {
                             reject(err)
                         } else {
@@ -43,11 +43,11 @@ export default class AssetUtil extends cc.Component {
     }
 
     //在loadbundle时有读缓存 不用考虑重复加载的问题
-    static loadRes(bundleName,windowName) {
+    static loadRes(bundleName,resUrl) {
         return new Promise<any>(
             (resolve, reject) => {
                 AssetUtil.loadBundle(bundleName).then(() => {
-                    cc.assetManager.getBundle(bundleName).load<cc.SpriteFrame>(windowName,cc.SpriteFrame,(err, asset:cc.SpriteFrame) => {
+                    cc.assetManager.getBundle(bundleName).load<cc.SpriteFrame>(resUrl,cc.SpriteFrame,(err, asset:cc.SpriteFrame) => {
                         if (err) {
                             reject(err)
                         } else {
