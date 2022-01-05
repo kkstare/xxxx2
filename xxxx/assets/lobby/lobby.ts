@@ -7,6 +7,7 @@
 
 import ActivityDownloadUtil from "../commonScript/ActivityDownloadUtil";
 import AssetUtil from "../commonScript/AssetUtil";
+import FightView from "../fight/scripts/FightView";
 import BaseApp from "../frame/BaseApp";
 import SKSocket from "../frame/net/SKSocket";
 import UpdateAble from "../frame/update/UpdateAble";
@@ -201,9 +202,6 @@ export default class Lobby extends cc.Component implements UpdateAble {
         return node;
     }
 
-
-
-
     sendClick() {
         // let msg = xxxx.Login.create({
         //     userId: "1",
@@ -217,12 +215,17 @@ export default class Lobby extends cc.Component implements UpdateAble {
         BaseApp.instance.noticeMgr.addMsg("开始匹配对手")
         console.log(BaseApp.appData.agentId)
 
-        SKSocket.send("c2s_match", {
-            agentId: BaseApp.appData.agentId,
-            heroName:""+Math.random()
+        // SKSocket.send("c2s_match", {
+        //     agentId: BaseApp.appData.agentId,
+        //     heroName:""+Math.random()
+        // })
+
+        
+        AssetUtil.loadWindow("fight", "prefab/fightView").then((res) => {
+            let node = cc.instantiate(res)
+            BaseApp.instance.layerMgr.addToBaseLayer(node)
+            FightView.instance.initData(null)
         })
-
-
 
     }
     btn1Click() {

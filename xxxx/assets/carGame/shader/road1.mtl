@@ -1,0 +1,17 @@
+{
+  "__type__": "cc.Material",
+  "_name": "road1",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "0d3d151b-32dd-4c0c-90b3-730081a7bfda"
+  },
+  "_techniqueIndex": 0,
+  "_techniqueData": {
+    "0": {
+      "defines": {
+        "USE_TEXTURE": true
+      }
+    }
+  }
+}
